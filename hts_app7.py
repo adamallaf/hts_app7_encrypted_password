@@ -27,7 +27,7 @@ if __name__ == "__main__":
         z = (i & 0xff) ^ loop_number
         crc += z
         result[idx] = (i & 0xff) ^ loop_number
-        loop_counter = 1  # 0 or 1?
+        loop_counter = 0  # 0 or 1?
         while loop_counter < loop_number:
             if result[idx] & 1 == 0:
                 result[idx] = result[idx] >> 1
@@ -37,7 +37,7 @@ if __name__ == "__main__":
             loop_counter += 1
         result[idx] += 3
         idx += 1  # can be handled by enumerate(enc_str)
-    print(result)
+    print(result, hex(crc))
     if crc == 0x0dca:
         print("solved")
         exit()
